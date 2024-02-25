@@ -5,7 +5,7 @@ import { BeatLoader } from "react-spinners";
 
 function PlanetPage() {
   const [planets, setPlanets] = useState([]);
-  const [changePlanet, setChangePlanet] = useState(1);
+  const [changePage, setChangePage] = useState(1);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ function PlanetPage() {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://swapi.dev/api/planets/?page=${changePlanet}&format=json`
+          `https://swapi.dev/api/planets/?page=${changePage}&format=json`
         );
         setPlanets(response.data.results);
         setLoading(false);
@@ -24,7 +24,7 @@ function PlanetPage() {
     };
 
     fetchPlanets();
-  }, [changePlanet]);
+  }, [changePage]);
 
   return (
     <div className="mx-5 my-10">
@@ -42,18 +42,18 @@ function PlanetPage() {
           <div className="flex justify-between items-center">
             <button
               onClick={() =>
-                setChangePlanet(changePlanet > 1 ? changePlanet - 1 : 6)
+                setChangePage(changePage > 1 ? changePage - 1 : 6)
               }
               className="bg-red-500 hover:bg-red-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
             >
               Previous
             </button>
             <span className="font-semibold text-3xl">
-              {`<< ${changePlanet} >>`}
+              {`<< ${changePage} >>`}
             </span>
             <button
               onClick={() =>
-                setChangePlanet(changePlanet < 6 ? changePlanet + 1 : 1)
+                setChangePage(changePage < 6 ? changePage + 1 : 1)
               }
               className="bg-green-500 hover:bg-green-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
             >
