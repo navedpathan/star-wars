@@ -46,21 +46,21 @@ function ResidentPage() {
               <Person key={index} person={person} />
             ))}
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <button
               onClick={() =>
-                setChangePage((prevPage) => Math.max(prevPage - 1, 1))
+                setChangePage((prevPage) => Math.max(prevPage - 1, 9))
               }
-              className="bg-red-400 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
+              className="bg-red-500 hover:bg-red-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
             >
               Previous
             </button>
-            <span className="flex flex-col font-semibold text-3xl mt-6">{`<< ${changePage} >>`}</span>
+            <span className="font-semibold text-3xl">{`<< ${changePage} >>`}</span>
             <button
               onClick={() =>
-                setChangePage((prevPage) => Math.min(prevPage + 1, 9))
+                setChangePage((prevPage) => Math.min(prevPage + 1, 1))
               }
-              className="bg-green-500 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
+              className="bg-green-500 hover:bg-green-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
             >
               Next
             </button>

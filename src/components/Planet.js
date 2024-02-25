@@ -39,23 +39,23 @@ function PlanetPage() {
               <Planet key={index} planet={planet} planetNumber={index + 1} />
             ))}
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <button
               onClick={() =>
-                setChangePlanet(changePlanet > 1 ? changePlanet - 1 : 1)
+                setChangePlanet(changePlanet > 1 ? changePlanet - 1 : 6)
               }
-              className="bg-red-400 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
+              className="bg-red-500 hover:bg-red-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
             >
               Previous
             </button>
-            <span className="flex flex-col font-semibold text-3xl mt-6">
+            <span className="font-semibold text-3xl">
               {`<< ${changePlanet} >>`}
             </span>
             <button
               onClick={() =>
-                setChangePlanet(changePlanet < 6 ? changePlanet + 1 : 6)
+                setChangePlanet(changePlanet < 6 ? changePlanet + 1 : 1)
               }
-              className="bg-green-500 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
+              className="bg-green-500 hover:bg-green-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
             >
               Next
             </button>
@@ -183,7 +183,7 @@ function Planet({ planet }) {
           ) : (
             <ul className="text-yellow-500 flex flex-col items-start cursor-pointer">
               {residents.map((resident, index) => (
-                <li key={index}>
+                <li key={index} className="hover:text-yellow-400 hover:underline">
                   <Link to={`/resident/${resident.url.match(/\d+/)[0]}`}>
                     {resident.name}
                   </Link>

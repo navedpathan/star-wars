@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 
 function ResidentDetailsPage() {
   const [resident, setResident] = useState(null);
@@ -33,15 +34,17 @@ function ResidentDetailsPage() {
   const navigateToResident = (direction) => {
     const currentResidentId = parseInt(residentId);
     if (direction === "next") {
-      window.location.href = `/resident/${currentResidentId + 1}`;
-    } else if (direction === "previous" && currentResidentId > 1) {
-      window.location.href = `/resident/${currentResidentId - 1}`;
+      window.location.href = `/resident/${currentResidentId < 83 ? currentResidentId + 1 : 1}`;
+    } else if (direction === "previous") {
+      window.location.href = `/resident/${currentResidentId > 1 ? currentResidentId - 1 : 83}`;
     }
   };
 
   if (loading) {
     return (
-      <div className="text-center text-5xl font-semibold my-40">Loading...</div>
+      <div className="text-center text-5xl font-semibold my-40">
+          <BeatLoader color={"white"} loading={loading} size={50} />
+      </div>
     );
   }
 
@@ -65,7 +68,7 @@ function ResidentDetailsPage() {
         </div>
         <div className="flex flex-col justify-center gap-4 mx-1 md:mx-10 text-xl  items-center md:items-start">
           <h2 className="text-3xl md:text-2xl lg:text-4xl font-semibold">
-            {resident.name} ({residentId})
+            {resident.name}
           </h2>
           <p className="flex gap-2">
             Height :
@@ -104,16 +107,14 @@ function ResidentDetailsPage() {
       <div className="flex justify-between mt-4">
         <button
           onClick={() => navigateToResident("previous")}
-          className="bg-red-400 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
+          className="bg-red-500 hover:bg-red-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
         >
           Previous
         </button>
-        <Link to="/" className="text-3xl text-cyan-400">
-          Go to Planets
-        </Link>
+        <span className="font-semibold text-3xl">{`<< ${residentNumber} >>`}</span>
         <button
           onClick={() => navigateToResident("next")}
-          className="bg-green-500 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
+          className="bg-green-500 hover:bg-green-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
         >
           Next
         </button>
