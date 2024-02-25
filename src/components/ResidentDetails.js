@@ -104,7 +104,7 @@ function ResidentDetailsPage() {
         </div>
       </div>
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-4">
         <button
           onClick={() => navigateToResident("previous")}
           className="bg-red-500 hover:bg-red-600 text-black font-semibold text-xl p-4 mx-2 text-nowrap rounded-md"
